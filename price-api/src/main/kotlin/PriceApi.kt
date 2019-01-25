@@ -1,3 +1,4 @@
+package net.dryft.decoupled.pricing
 import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.response.*

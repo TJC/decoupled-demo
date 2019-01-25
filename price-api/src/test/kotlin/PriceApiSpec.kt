@@ -1,3 +1,4 @@
+package net.dryft.decoupled.pricing
 import com.beust.klaxon.Klaxon
 import io.kotlintest.*
 import io.kotlintest.matchers.string.shouldStartWith
