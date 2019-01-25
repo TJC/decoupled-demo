@@ -1,0 +1,75 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Coda:400,800|Indie+Flower|Rubik:400,700" rel="stylesheet">
+    <style>
+   .cursive {
+     font-family: 'Indie Flower', cursive;
+     font-size: 110%;
+   }
+   a,p {
+     font-family: 'Rubik', sans-serif;
+     font-weight: 400;
+     /* font-family: 'Quicksand', sans-serif; */
+   }
+   h1,h2,h3,h4,h5,h6 {
+     font-family: 'Coda', sans-serif;
+   }
+   h1,h2 {
+     font-weight: 800;
+   }
+   h3,h4,h5,h6 {
+     font-weight: 400;
+   }
+   .sans-mono {
+     font-family: monospace;
+     font-size: 120%;
+   }
+ </style>
+</head>
+<body>
+  <main role="main">
+
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading">ShopItem Uploader</h1>
+        <p class="lead text-muted">Upload new items, edit existing ones.</p>
+        <p>
+          <a href="#" id="create-new-btn" class="btn btn-primary my-2">Create new item</a>
+          <a href="#" id="edit-existing-btn" class="btn btn-secondary my-2">Edit existing item</a>
+        </p>
+      </div>
+    </section>
+
+
+    <div class="container" id="create-new-form" style="display: none;">
+      <form id="new-item-form" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="A wonderful title" required>
+          <small id="titleHelp" class="form-text text-muted">A short, snappy title for your item.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="imageFile">Item image</label>
+          <input type="file" class="form-control-file" id="imageFile" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+      </form>
+    </div>
+
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  <script src="/app/app.js"></script>
+</body>
+</html>
