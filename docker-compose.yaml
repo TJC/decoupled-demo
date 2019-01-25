@@ -1,0 +1,19 @@
+version: "3.3"
+services:
+  minios3:
+    image: minio/minio
+    environment:
+      MINIO_ACCESS_KEY: ${AWS_ACCESS_KEY_ID}
+      MINIO_SECRET_KEY: ${AWS_SECRET_ACCESS_KEY}
+    ports:
+      - 9000:9000
+    volumes:
+      - ./data/s3:/data
+    command: server /data
+
+  kinesalite:
+    image: instructure/kinesalite
+    ports:
+      - 11501:11501
+    command: "--shardLimit 100 --port 11501 --ssl"
+
