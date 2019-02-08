@@ -7,12 +7,15 @@ import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import net.dryft.decoupled.uploader.table.ShopItemTable
 
+// TODO: There is a lot of double-handling going on here; look into whether the Exposed DAO API
+// is better, and/or could be substituted for this class.
+
 data class ShopItem(
         val id: String,
         var title: String,
         var description: String,
-        var image: String? = null,
-        var thumbnail: String? = null
+        var image: String,
+        var thumbnail: String
 ) {
     fun save() {
         val myself = this
@@ -20,7 +23,11 @@ data class ShopItem(
             ShopItemTable.insert {
                 it[id] = myself.id
                 it[title] = myself.title
+                it[description] = myself.description
+                it[image] = myself.image
+                it[thumbnail] = myself.thumbnail
             }
+            // TODO: Emit Kinesis event here.
         }
     }
 
