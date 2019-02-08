@@ -10,12 +10,14 @@ import io.ktor.features.AutoHeadResponse
 import io.ktor.features.CallLogging
 import io.ktor.http.content.*
 import io.ktor.request.receiveMultipart
+import org.jetbrains.exposed.sql.Database
 import java.io.*
 import java.security.InvalidParameterException
 import java.util.*
 
 
 fun Application.main() {
+    DBManager.setup("uploader.db")
     Uploader().apply { main() }
 }
 

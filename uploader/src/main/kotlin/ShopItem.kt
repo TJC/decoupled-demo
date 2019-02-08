@@ -3,6 +3,9 @@ package net.dryft.decoupled.uploader
 import java.io.File
 import java.security.InvalidParameterException
 import java.util.*
+import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.transactions.transaction
+import net.dryft.decoupled.uploader.table.ShopItemTable
 
 data class ShopItem(
         val id: String,
@@ -12,7 +15,13 @@ data class ShopItem(
         var thumbnail: String? = null
 ) {
     fun save() {
-        // TODO
+        val myself = this
+        transaction {
+            ShopItemTable.insert {
+                it[id] = myself.id
+                it[title] = myself.title
+            }
+        }
     }
 
     companion object {
@@ -21,7 +30,19 @@ data class ShopItem(
 
         fun find(id: String?): ShopItem? {
             if (id == null) return null
-            return ShopItem(id = id, title = "Test", description = "Example")
+            return transaction {
+                val query = ShopItemTable.select { ShopItemTable.id eq id }.limit(1)
+                val item = query.map {
+                    ShopItem(
+                            it[ShopItemTable.id],
+                            it[ShopItemTable.title],
+                            it[ShopItemTable.description],
+                            it[ShopItemTable.image],
+                            it[ShopItemTable.thumbnail]
+                    )
+                }
+                item.firstOrNull()
+            }
         }
 
         fun create(title: String, description: String, baseImage: File): ShopItem {

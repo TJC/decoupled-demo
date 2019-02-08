@@ -29,10 +29,10 @@ dependencies {
 //    implementation("io.ktor:ktor-client-okhttp:$ktor_version")
 //    implementation("io.ktor:ktor-html-builder:$ktor_version")
 //    implementation("io.ktor:ktor-gson:$ktor_version")
-
+    implementation("org.jetbrains.exposed:exposed:0.12.1")
+    implementation("org.xerial:sqlite-jdbc:3.25.2")
     testCompile("io.kotlintest:kotlintest-runner-junit5:3.2.1")
     testCompile("io.ktor:ktor-server-test-host:$ktor_version")
-
 }
 
 tasks.withType<KotlinCompile> {
